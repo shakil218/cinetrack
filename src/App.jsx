@@ -9,6 +9,8 @@ import EmptyState from "./components/EmptyState";
 
 import { initialMovies } from "./data/initialMovies";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const STORAGE_KEY = "cinetrack_movies_v1";
 
@@ -18,6 +20,8 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(true);
+
+  const watchedMovies = movies.filter((movie) => movie.watched).length;
 
   // Fake loading to show skeleton UI
   useEffect(() => {
@@ -66,7 +70,8 @@ export default function App() {
   }, [movies, searchTerm, filter]);
 
   return (
-     <main className="app-shell">
+    <main className="app-shell">
+      <Navbar totalMovies={movies.length} watchedMovies={watchedMovies} />
       {/* Hero */}
       <header className="hero">
         <div className="hero-content">
@@ -75,9 +80,8 @@ export default function App() {
           <h1>Movie Watchlist Dashboard</h1>
 
           <p>
-            Track your favorite movies, search by title,
-            filter by watched status, and keep everything
-            saved in your browser.
+            Track your favorite movies, search by title, filter by watched
+            status, and keep everything saved in your browser.
           </p>
         </div>
       </header>
@@ -111,6 +115,9 @@ export default function App() {
           ))}
         </section>
       )}
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
