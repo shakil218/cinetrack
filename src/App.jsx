@@ -52,6 +52,12 @@ export default function App() {
   }
 
   function handleDeleteMovie(id) {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this movie?",
+    );
+
+    if (!isConfirmed) return;
+
     setMovies((prev) => prev.filter((movie) => movie.id !== id));
   }
 
