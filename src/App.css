@@ -741,6 +741,7 @@ select:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-align: left;
   gap: 24px;
 
   padding-bottom: 24px;
