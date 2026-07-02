@@ -1,4 +1,5 @@
 import "./App.css";
+import MovieCard from "./components/MovieCard";
 import MovieForm from "./components/MovieForm";
 import { initialMovies } from "./data/initialMovies";
 import { useLocalStorage } from "./hooks/useLocalStorage";
@@ -39,6 +40,20 @@ export default function App() {
       </header>
 
       <MovieForm onAddMovie={handleAddMovie} />
+
+      <section className="panel">
+        
+            <h1>total movies: {movies.length}</h1>
+          <section className="movie-grid" aria-label="Movie list">
+            {movies.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+              />
+            ))}
+          </section>
+      </section>
+
     </main>
   );
 }
